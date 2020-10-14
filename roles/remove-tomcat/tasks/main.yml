@@ -1,0 +1,63 @@
+---
+- block:
+
+  - name: "Stop tomcat service"
+    systemd: 
+      name: tomcat.service 
+      state: stopped
+
+  - name: "systemd disable tomcat"
+    systemd: 
+      name: tomcat.service 
+      state: stopped 
+      enabled: no
+
+  - name: "systemd daemon-reload"
+    systemd: 
+      daemon_reload: yes
+
+  - name: "remove tomcat.service"
+    file: 
+      path: /etc/systemd/system/tomcat.service 
+      state: absent
+
+  - name: "remove tomcat & java"
+    file: 
+      path: /opt/tomcat 
+      state: {{ item }}
+    with_items:
+    - absent
+    - directory
+
+  - name: "remove tomcat folder"
+    shell: /bin/rm -rf /opt/tomcat
+
+  - name: "remove java"
+    yum: 
+      name: java-1.8.0-openjdk-headless-1.8.0.222.b10-1.el7_7.i686 
+      state: absent
+
+  - name: "remove user tomcat"
+    user: 
+      name: tomcat 
+      state: absent 
+      remove: yes
+
+  - name: "remove group tomcat"
+    group: 
+      name: tomcat 
+      state: absent
+
+  - name: "firewall close 8080"
+    firewalld: 
+      port: 8080/tcp 
+      permanent: no 
+      state: disabled
+
+  - name: "firewall service restart"
+    service: 
+      name: firewalld 
+      state: restarted
+  ignore_errors: yes
+ 
+

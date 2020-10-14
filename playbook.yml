@@ -1,0 +1,6 @@
+---
+- hosts: tomcat
+  become: true
+  roles:
+    - basis
+

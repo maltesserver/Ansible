@@ -1,0 +1,12 @@
+- name: "Aktualisieren des RedHat Betriebsystems"
+  yum: 
+    name: "*" 
+    state: latest
+
+- name: "Anschließender Reboot"
+  reboot:
+
+- name: "Nachdem Reboot"
+  debug: 
+    msg: "Fertig! System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}"
+

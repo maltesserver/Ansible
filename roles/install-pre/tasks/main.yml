@@ -1,0 +1,26 @@
+---
+- name: "create group tomcat"
+  group: 
+    name: tomcat
+
+- name: "add user tomcat"
+  user: 
+    name: tomcat 
+    uid: 1023 
+    group: tomcat 
+    shell: /bin/bash
+
+- name: "check exists tomcat-folder"
+  stat: 
+    path: /opt/tomcat
+  register: tm
+
+- name: "create tomcat-folder"
+  file: 
+    path: /opt/tomcat 
+    state: directory 
+    owner: tomcat 
+    group: tomcat 
+    mode: 0755
+  when: not tm.stat.exists
+

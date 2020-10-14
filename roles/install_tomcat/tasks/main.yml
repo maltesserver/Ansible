@@ -1,0 +1,43 @@
+---
+- name: "create java-folder"
+  file: 
+    path: /opt/tomcat/libs 
+    state: directory 
+    owner: tomcat 
+    group: tomcat 
+    mode: 0755
+
+- name: "extract java"
+  unarchive: 
+    src: {{ JAVA_TARGZ_FILE }} 
+    dest: /opt/tomcat/libs
+
+- name: "copy .profile"
+  template: 
+    src: _profile.j2 
+    dest: /home/tomcat/.profile 
+    owner: tomcat 
+    group: tomcat 
+    mode: 0644
+
+- name: "copy .bash_profile"
+  copy: 
+    src: _bash_profile 
+    dest: /home/tomcat/.bash_profile 
+    owner: tomcat 
+    group: tomcat 
+    mode: 0644
+
+- name: "extract tomcat"
+  unarchive: 
+    src: apache-tomcat-{{ TOMCAT_VERSION }}.tar.gz 
+    dest: /opt/tomcat
+
+- name: "set symbolic link for default tomcat"
+  file: 
+    src: /opt/tomcat/apache-tomcat-{{ TOMCAT_VERSION }} 
+    dest: /opt/tomcat/latest 
+    owner: tomcat 
+    group: tomcat kdri
+    state: link
+
