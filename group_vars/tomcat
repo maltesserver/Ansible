@@ -1,4 +1,4 @@
 JAVA_TARGZ_FILE: "OpenJDK8U-jdk_x64_linux_hotspot_8u232b09.tar.gz"
 JAVA_VERSION: "jdk8u232-b09"
 TOMCAT_VERSION: "9.0.24"
-
+URL_WEBSITE: "http://192.168.178.158:8080/employees/"

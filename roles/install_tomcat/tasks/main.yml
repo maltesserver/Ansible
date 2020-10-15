@@ -9,7 +9,7 @@
 
 - name: "extract java"
   unarchive: 
-    src: {{ JAVA_TARGZ_FILE }} 
+    src: "{{ JAVA_TARGZ_FILE }}" 
     dest: /opt/tomcat/libs
 
 - name: "copy .profile"
@@ -38,6 +38,6 @@
     src: /opt/tomcat/apache-tomcat-{{ TOMCAT_VERSION }} 
     dest: /opt/tomcat/latest 
     owner: tomcat 
-    group: tomcat kdri
+    group: tomcat
     state: link
 

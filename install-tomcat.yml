@@ -2,25 +2,27 @@
 - hosts: tomcat
   become: true
   roles:
-  - install_pre
+  - install-pre
+
 - hosts: tomcat
   become: true
   become_user: tomcat
   roles:
   - install_tomcat
 
----
 - hosts: tomcat
   become: true
   roles:
-  - install_pre
+  - install-post
+
 - hosts: tomcat
   become: true
   become_user: tomcat
   roles:
-  - install_tomcat
+  - install-webapp
+
 - hosts: tomcat
   become: true
   roles:
-  - install_post
+  - startwebapp
 

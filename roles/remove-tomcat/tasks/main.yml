@@ -24,7 +24,7 @@
   - name: "remove tomcat & java"
     file: 
       path: /opt/tomcat 
-      state: {{ item }}
+      state: "{{ item }}"
     with_items:
     - absent
     - directory
@@ -59,5 +59,4 @@
       name: firewalld 
       state: restarted
   ignore_errors: yes
- 
 

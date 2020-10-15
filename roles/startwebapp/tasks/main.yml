@@ -1,0 +1,13 @@
+---
+
+- name: "tomcat service restart"
+  systemd:
+    name: tomcat.service
+    state: restarted
+
+- name: "check website"
+  uri:
+    url: "{{URL_WEBSITE}}"
+    return_content: yes
+  register: WERT
+ 

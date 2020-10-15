@@ -2,5 +2,5 @@
 - hosts: tomcat
   become: true
   roles:
-  - remove_tomcat
+  - remove-tomcat
 
