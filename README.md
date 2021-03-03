@@ -1,6 +1,6 @@
 # Ansible
 
-Simple Ansible script for automatic installation of Tomcat with a webpage.
+Simple Ansible script for automatic installation of Tomcat on a selected Server with a webpage.
 Built with the Red Hat Ansible Automation Platform.
 
 ## Installation
@@ -24,7 +24,10 @@ On RHEL and CentOS:
 sudo yum install ansible
 ```
 
+### Other Stuff
 
+* Make sure you have all the files on the Host Computer 
+* Run the Command down below with the correct IP in the hosts file and Voila
 
 ## Usage
 
